@@ -9,7 +9,7 @@ ReactDOM.render(
   document.querySelector("#app")
 );
 
-fetch("https://pokeapi.co/api/v2/pokemon?limit=100")
+fetch("https://pokeapi.co/api/v2/pokemon?limit=150")
   .then((response) => {
     return response.json();
   })

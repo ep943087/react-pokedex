@@ -2,10 +2,12 @@ import React from "react";
 
 const PokeListItem = (props) => (
   <li
-    onClick={() => props.handlePokemon(props.url)}
-    className="list-group-item"
+    onClick={() => props.handlePokemon(props.id)}
+    className="list-group-item button"
   >
-    {props.name}
+    <p>
+      {props.id}. {props.name.replace(/^./, props.name[0].toUpperCase())}
+    </p>
   </li>
 );
 

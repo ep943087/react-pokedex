@@ -11,14 +11,19 @@ export default class PokedexApp extends React.Component {
       pokemon: undefined,
       pokeList: props.pokeList,
     };
+    this.max = 150;
+    this.fetchUrl = "https://pokeapi.co/api/v2/pokemon/";
   }
-  handlePokemon = (url) => {
-    fetch(url)
+  handlePokemon = (id) => {
+    fetch(this.fetchUrl + id)
       .then((result) => result.json())
       .then((data) => {
         const pokemon = {
           name: data.name,
           image: data.sprites.front_default,
+          id: data.id,
+          prev: data.id > 1 ? data.id - 1 : this.max,
+          next: data.id < this.max ? data.id + 1 : 1,
         };
         this.setState(() => ({ pokemon }));
       })
@@ -46,6 +51,7 @@ export default class PokedexApp extends React.Component {
                 <PokeInfo
                   pokemon={this.state.pokemon}
                   handleBackToList={this.handleBackToList}
+                  handlePokemon={this.handlePokemon}
                 />
               )}
             </div>
